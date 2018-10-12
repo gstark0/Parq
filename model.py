@@ -14,9 +14,8 @@ def load_images(dataset_location):
 	# ---- Images to arrays of numbers ----
 
 	# Images containing empty parking spots
-
-	images_0 = os.listdir(samples_0)
-	images_1 = os.listdir(samples_1)
+	images_0 = os.listdir(samples_0).remove('.DS_Store')
+	images_1 = os.listdir(samples_1).remove('.DS_Store')
 	data_x = np.ndarray(shape=(len(images_0 + images_1), width, height, channels), dtype=np.float32)
 	data_y = np.ndarray(shape=(len(images_0 + images_1)), dtype=np.float32)
 
@@ -50,16 +49,17 @@ def load_images(dataset_location):
 	data_x = np.array(data_x)
 	data_y = np.array(data_y)
 
-	data_x = data_x[:-errors]
-	data_y = data_y[:-errors]
+	if errors != 0:
+		data_x = data_x[:-errors]
+		data_y = data_y[:-errors]
+
 	data_x, data_y = unison_shuffled_copies(data_x, data_y)
 
 	return data_x, data_y
 
 def main():
 	data_x, data_y = load_images(train_dataset)
-	print(np.shape(data_x))
-	print(np.shape(data_y))
+	test_x, test_y = load_images(test_dataset)
 	
 	model = tf.keras.models.Sequential([
 		tf.keras.layers.Convolution2D(32, 3, 3, input_shape=(width, height, 3), activation=tf.nn.relu),
@@ -72,9 +72,7 @@ def main():
 	model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 	print('Training model...')
 	model.fit(data_x, data_y, epochs=5)
-	print(model.predict(data_x[:2]))
-	print(data_y[:2])
-	
+	print(model.evaluate(test_x, test_y))
 
 if __name__ == '__main__':
 	main()
