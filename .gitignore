@@ -1,3 +1,7 @@
+# Byte-compiled / optimized / DLL files
+#######################################
+__pycache__/
+
 # Compiled source #
 ###################
 *.com
@@ -35,3 +39,7 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Dataset
+#########
+dataset/
