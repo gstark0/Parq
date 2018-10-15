@@ -14,8 +14,8 @@ def load_images(dataset_location):
 	# ---- Images to arrays of numbers ----
 
 	# Images containing empty parking spots
-	images_0 = os.listdir(samples_0).remove('.DS_Store')
-	images_1 = os.listdir(samples_1).remove('.DS_Store')
+	images_0 = os.listdir(samples_0)
+	images_1 = os.listdir(samples_1)
 	data_x = np.ndarray(shape=(len(images_0 + images_1), width, height, channels), dtype=np.float32)
 	data_y = np.ndarray(shape=(len(images_0 + images_1)), dtype=np.float32)
 
@@ -30,7 +30,7 @@ def load_images(dataset_location):
 			data_y[i] = 0.
 			i += 1
 		except ValueError:
-			print(img, '<--- Not working')
+			print(img, '<--- Does not work')
 			errors += 1
 
 	# Images containing occupied parking spots
@@ -43,7 +43,7 @@ def load_images(dataset_location):
 			data_y[i] = 1.
 			i += 1
 		except ValueError:
-			print(img, '<--- Not working')
+			print(img, '<--- Does not work')
 			errors += 1
 
 	data_x = np.array(data_x)
@@ -57,7 +57,7 @@ def load_images(dataset_location):
 
 	return data_x, data_y
 
-def main():
+def train():
 	data_x, data_y = load_images(train_dataset)
 	test_x, test_y = load_images(test_dataset)
 	
@@ -72,7 +72,6 @@ def main():
 	model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 	print('Training model...')
 	model.fit(data_x, data_y, epochs=5)
-	print(model.evaluate(test_x, test_y))
 
-if __name__ == '__main__':
-	main()
+	return model
+

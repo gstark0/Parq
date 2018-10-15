@@ -9,9 +9,10 @@ def unison_shuffled_copies(a, b):
 	return a[p], b[p]
 
 # Convert image to numpy array of numbers
-def img_to_array(img_path):
-	print(img_path)
-	img = Image.open(img_path)
+def img_to_array(img, path=True):
+	print('Works')
+	if path:
+		img = Image.open(img)
 	img_arr = np.array(img) / 255.0
 	img_arr = img_arr.reshape(width, height, channels)
 
