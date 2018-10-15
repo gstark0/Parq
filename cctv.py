@@ -28,7 +28,8 @@ def crop_img(img, crop_data):
 	return cropped_img
 
 # Update data
-def update(model):
+def update():
+	model = tf.keras.models.load_model('model.h5')
 
 	parkings = db.all()
 	for parking in parkings:
@@ -47,3 +48,19 @@ def update(model):
 def get_data():
 	return db.all()
 
+
+'''
+db.insert({
+	'id': 1,
+	'addr': 'ul, Wojska Polskiego 16, 88-100 Inowrocław',
+	'url': 'http://46.186.121.222:82/GetImage.cgi?CH=0',
+	'spots': [
+		{
+			'id': 1,
+			'coord': [0, 0],
+			'crop': [747, 997, width, height],
+			'occupied': False
+		}
+	]
+})
+'''

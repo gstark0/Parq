@@ -72,6 +72,7 @@ def train():
 	model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 	print('Training model...')
 	model.fit(data_x, data_y, epochs=5)
+	model.save('model.h5')
 
 	return model
 

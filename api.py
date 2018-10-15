@@ -6,25 +6,22 @@ import cctv as cctv
 
 app = Flask(__name__)
 
-# TensorFlow model
-model = None
-
 # Return parking info from database
 @app.route('/get_data')
 def get_data():
 	return jsonify(cctv.get_data())
 
 # Refresh info about all parking spots and update database
+@app.route('/update')
 def update():
-	cctv.update(model)
-	return 'Updated'
+	cctv.update()
+	return 'updated'
 
 # Train the TensorFlow model
 @app.route('/train')
 def train():
-	global model
-	model = clf.train()
-	return 'Trained'
+	clf.train()
+	return 'trained'
 
 @app.route('/')
 def index():
