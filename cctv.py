@@ -39,12 +39,41 @@ def update():
 
 		# Process each parking spot
 		parking_spots = parking['spots']
+		updated_parking_spots = []
 		for spot in parking_spots:
 			spot_image = crop_img(camera_image, spot['crop'])
 			spot_image = img_to_array(spot_image, path=False)
-			print(model.predict(np.array([spot_image])))
+			prediction = model.predict(np.array([spot_image]))
+			if prediction[0][0] > prediction[0][1]:
+				spot['occupied'] = False
+			else:
+				spot['occupied'] = True
+			updated_parking_spots.append(spot)
+		parking_query = Query()
+		db.update({'spots': updated_parking_spots}, parking_query.id == parking['id'])
 
 # Get database
 def get_data():
 	return db.all()
 
+'''
+db.insert({
+	'id': 1,
+	'addr': 'ul, Wojska Polskiego 16, 88-100 Inowrocław',
+	'url': 'http://46.186.121.222:82/GetImage.cgi?CH=0',
+	'spots': [
+		{
+			'id': 1,
+			'coord': [0, 0],
+			'crop': [747, 997, width, height],
+			'occupied': False
+		},
+		{
+			'id': 2,
+			'coord': [0, 0],
+			'crop': [822, 924, width, height],
+			'occupied': False
+		}
+	]
+})
+'''
