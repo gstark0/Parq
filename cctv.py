@@ -43,9 +43,7 @@ def update(model):
 			spot_image = img_to_array(spot_image, path=False)
 			print(model.predict(np.array([spot_image])))
 
+# Get database
+def get_data():
+	return db.all()
 
-
-
-
-
-'''
