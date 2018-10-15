@@ -48,19 +48,3 @@ def update():
 def get_data():
 	return db.all()
 
-
-'''
-db.insert({
-	'id': 1,
-	'addr': 'ul, Wojska Polskiego 16, 88-100 Inowrocław',
-	'url': 'http://46.186.121.222:82/GetImage.cgi?CH=0',
-	'spots': [
-		{
-			'id': 1,
-			'coord': [0, 0],
-			'crop': [747, 997, width, height],
-			'occupied': False
-		}
-	]
-})
-'''
