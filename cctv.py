@@ -29,7 +29,6 @@ def crop_img(img, crop_data):
 
 # Update data
 def update():
-	model = tf.keras.models.load_model('model.h5')
 
 	parkings = db.all()
 	for parking in parkings:
@@ -40,7 +39,11 @@ def update():
 		# Process each parking spot
 		parking_spots = parking['spots']
 		updated_parking_spots = []
+		print(len(parking_spots))
 		for spot in parking_spots:
+			# Load the model everytime in order to avoid threading error
+			model = tf.keras.models.load_model('model.h5')
+
 			spot_image = crop_img(camera_image, spot['crop'])
 			spot_image = img_to_array(spot_image, path=False)
 			prediction = model.predict(np.array([spot_image]))
@@ -49,6 +52,9 @@ def update():
 			else:
 				spot['occupied'] = True
 			updated_parking_spots.append(spot)
+
+			# Threading error fix also
+			tf.keras.backend.clear_session()
 		parking_query = Query()
 		db.update({'spots': updated_parking_spots}, parking_query.id == parking['id'])
 
@@ -56,24 +62,3 @@ def update():
 def get_data():
 	return db.all()
 
-'''
-db.insert({
-	'id': 1,
-	'addr': 'ul, Wojska Polskiego 16, 88-100 Inowrocław',
-	'url': 'http://46.186.121.222:82/GetImage.cgi?CH=0',
-	'spots': [
-		{
-			'id': 1,
-			'coord': [0, 0],
-			'crop': [747, 997, width, height],
-			'occupied': False
-		},
-		{
-			'id': 2,
-			'coord': [0, 0],
-			'crop': [822, 924, width, height],
-			'occupied': False
-		}
-	]
-})
-'''
