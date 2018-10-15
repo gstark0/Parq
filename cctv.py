@@ -39,7 +39,7 @@ def update():
 		# Process each parking spot
 		parking_spots = parking['spots']
 		updated_parking_spots = []
-		print(len(parking_spots))
+
 		for spot in parking_spots:
 			# Load the model everytime in order to avoid threading error
 			model = tf.keras.models.load_model('model.h5')
