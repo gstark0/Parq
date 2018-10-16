@@ -61,4 +61,3 @@ def update():
 # Get database
 def get_data():
 	return db.all()
-
