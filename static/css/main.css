@@ -1,0 +1,48 @@
+* {
+
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	display: flex;
+	position: relative;
+	z-index: 1;
+	height: 80px;
+	width: 100%;
+	background-image: linear-gradient(to right, #267873, #14698C);
+	align-items: center;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+#navbar-content {
+	display: flex;
+	align-items: center;
+	margin-left: 40px;
+	margin-right: 40px;
+	width: calc(100% - 80px);
+}
+
+#mapid {
+	position: relative;
+	height: calc(100% - 80px);
+	width: 100%;
+	z-index: 0;
+}
+
+.marker-icon-red {
+	text-align:center;
+	color:White;
+	background-image: url('../img/red_circle.svg');
+}
+
+.marker-icon-green {
+	text-align:center;
+	color:White;
+	background-image: url('../img/green_circle.svg');
+}

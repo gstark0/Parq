@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 import tensorflow as tf
 import model as clf
@@ -25,7 +25,7 @@ def train():
 
 @app.route('/')
 def index():
-	return "Parq API"
+	return render_template('index.html')
 
 if __name__ == '__main__':
 	app.run()
