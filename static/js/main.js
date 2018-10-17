@@ -30,8 +30,6 @@ fetch('/get_data', {
 	Object.keys(freeSpots).forEach(function(spot) {
 		x_coord = parseFloat(spot.split(',')[0]);
 		y_coord = parseFloat(spot.split(',')[1]);
-		console.log(x_coord)
-		console.log(y_coord)
 
 		// Defined the look and value of the marker
 		var markerIcon = L.divIcon({
@@ -44,38 +42,51 @@ fetch('/get_data', {
 
 		// Place the marker
 		console.log(freeSpots)
-		var marker = new L.marker([x_coord, y_coord], {icon: markerIcon}).addTo(map);		
+		marker = new L.marker([x_coord, y_coord], {icon: markerIcon}).addTo(map)
+
+		// On marker click
+		marker.on('click', function() { loadTable(spot) })
 	})
 })
 
-/*
-var markerIcon = L.divIcon({
-		className: 'marker-icon-red',
-		iconSize: [30, 30],
-		iconAnchor: [15, 15],
-		popupAnchor: [3, -40],
-		html: '<span style="font-size: 20px;">0</span>'
-});
- 
-var marker = new L.marker([52.78317,18.24167], {icon: markerIcon}).addTo(map);
+function loadTable(coord) {
+	x_coord = coord.split(',')[0];
+	y_coord = coord.split(',')[1];
 
-var markerIcon = L.divIcon({
-		className: 'marker-icon-green',
-		iconSize: [30, 30],
-		iconAnchor: [15, 15],
-		popupAnchor: [3, -40],
-		html: '<span style="font-size: 20px;">3</span>'
-});
+	fetch('/get_table?x=' + x_coord + '&y=' + y_coord, {
+		method: 'GET',
+		headers: {
+			'Content-type': 'application/json'
+		}
+	})
+	.then(data => data.json())
+	.then(data => {
+		console.log(data);
+		document.getElementById('parking-table').style.display = 'flex';
 
-var marker = new L.marker([52.78310,18.24147], {icon: markerIcon}).addTo(map);
+		posTable = [];
+		data.forEach(function(spot) {
+			pos = spot['position']
+			if(posTable[pos[0]] == undefined)
+				posTable[pos[0]] = [];
+			posTable[pos[0]][pos[1]] = spot['occupied'];
+		})
+		
+		tableContent = '';
+		posTable.forEach(function(row) {
+			tableContent += '<tr>';
+			row.forEach(function(spot) {
+				if(!spot)
+					tableContent += '<td><div class="empty-spot"></div></td>'
+				else
+					tableContent += '<td><div class="occupied-spot"></div></td>'
+			})
+			tableContent += '</tr>';
+		})
+		document.getElementById('spots-table').innerHTML = tableContent;
+	})
+}
 
-var markerIcon = L.divIcon({
-		className: 'marker-icon-green',
-		iconSize: [30, 30],
-		iconAnchor: [15, 15],
-		popupAnchor: [3, -40],
-		html: '<span style="font-size: 20px;">8</span>'
-});
-
-var marker = new L.marker([52.78299,18.24128], {icon: markerIcon}).addTo(map);
-*/
+function hideTable() {
+	document.getElementById('parking-table').style.display = 'none';
+}

@@ -9,6 +9,7 @@ html, body {
 	padding: 0;
 }
 
+/* -------- Navbar -------- */
 nav {
 	display: flex;
 	position: relative;
@@ -28,6 +29,7 @@ nav {
 	width: calc(100% - 80px);
 }
 
+/* -------- Map -------- */
 #mapid {
 	position: relative;
 	height: calc(100% - 80px);
@@ -47,22 +49,25 @@ nav {
 	background-image: url('../img/green_circle.svg');
 }
 
+/* -------- Search Bar -------- */
 #search {
 	position: fixed;
 	z-index: 1;
 	left: 10%;
 	top: 30%;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	border-radius: 4px;
 }
 
 #search-bar {
 	border: none;
 	outline: none;
-	width: 250px;
-	height: 50px;
-	border-radius: 4px;
+	width: 280px;
+	height: 60px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
 	text-align: center;
-	font-size: 14px;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	font-size: 16px;
 	-moz-transition: all .3s ease;
     -o-transition: all .3s ease;
     -webkit-transition: all .3s ease;
@@ -70,34 +75,106 @@ nav {
 }
 
 #search-bar:hover {
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+
 }
 
 #search-bar:focus {
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+
 }
 
 #search-bar-button {
-	margin-left: 5px;
+	margin-left: -4px;
 	color: white;
-	width: 50px;
-	height: 52px;
-	border-radius: 4px;
+	width: 60px;
+	height: 62px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
 	border: none;
-	font-size: 14px;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-	background-image: linear-gradient(to right, #267873, #14698C);
+	font-size: 16px;
+	background-color: #267873;
 	outline: none;
-	-moz-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
+	-moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
 }
 
 #search-bar-button:hover {
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+	background-color: #14698C;
 }
 
 ::placeholder {
 	color: #BEBEBE;
 }
+
+/* -------- Search Bar -------- */
+#parking-table {
+	width: 200px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	position: fixed;
+	background-color: white;
+	border-radius: 4px;
+	z-index: 1;
+	right: 10%;
+	top: 21%;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+  	flex-direction: column;
+
+  	-moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+#parking-table table {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#parking-table tr td {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.empty-spot {
+	background-color: #71D87D;
+	width: 49px;
+	height: 19px;
+	border-radius: 4px;
+}
+
+.occupied-spot {
+	background-color: #D87171;
+	width: 49px;
+	height: 19px;
+	border-radius: 4px;
+}
+
+#parking-table span {
+	font-size: 18px;
+}
+
+#hide-parking-table {
+	color: white;
+	background-color: #267873;
+	font-size: 18px;
+	width: 40px;
+	height: 30px;
+	border: none;
+	outline: none;
+	border-radius: 4px;
+	-moz-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+#hide-parking-table:hover {
+	background-color: #14698C;
+}
+
