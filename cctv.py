@@ -1,4 +1,4 @@
-from tinydb import TinyDB, Query
+from tinydb import TinyDB, Query, where
 from utils import img_to_array
 from io import BytesIO
 from PIL import Image
@@ -61,3 +61,18 @@ def update():
 # Get database
 def get_data():
 	return db.all()
+
+# Get table of parking spots with requested coordinates
+def get_table(coord):
+
+	parkings = db.all()
+	selected_spots = []
+	found = False
+	for parking in parkings:
+		for spot in parking['spots']:
+			if spot['coord'] == coord:
+				selected_spots.append(spot)
+				found = True
+		if found:
+			return selected_spots
+	return 'No spots found!'

@@ -11,6 +11,13 @@ app = Flask(__name__)
 def get_data():
 	return jsonify(cctv.get_data())
 
+# Get each spot's status with its exact position on the parking table
+@app.route('/get_table', methods=['GET'])
+def get_table():
+	x = float(request.args.get('x'))
+	y = float(request.args.get('y'))
+	return jsonify(cctv.get_table([x, y]))
+
 # Refresh info about all parking spots and update database
 @app.route('/update')
 def update():
