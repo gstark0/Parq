@@ -46,3 +46,58 @@ nav {
 	color:White;
 	background-image: url('../img/green_circle.svg');
 }
+
+#search {
+	position: fixed;
+	z-index: 1;
+	left: 10%;
+	top: 30%;
+}
+
+#search-bar {
+	border: none;
+	outline: none;
+	width: 250px;
+	height: 50px;
+	border-radius: 4px;
+	text-align: center;
+	font-size: 14px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	-moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+#search-bar:hover {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+#search-bar:focus {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+#search-bar-button {
+	margin-left: 5px;
+	color: white;
+	width: 50px;
+	height: 52px;
+	border-radius: 4px;
+	border: none;
+	font-size: 14px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	background-image: linear-gradient(to right, #267873, #14698C);
+	outline: none;
+	-moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+#search-bar-button:hover {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+::placeholder {
+	color: #BEBEBE;
+}
