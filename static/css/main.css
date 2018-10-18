@@ -55,7 +55,6 @@ nav {
 	z-index: 1;
 	left: 10%;
 	top: 30%;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 	border-radius: 4px;
 }
 
@@ -68,18 +67,57 @@ nav {
 	border-bottom-left-radius: 4px;
 	text-align: center;
 	font-size: 16px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 	-moz-transition: all .3s ease;
     -o-transition: all .3s ease;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 #search-bar:hover {
-
+	
 }
 
 #search-bar:focus {
 
+}
+
+#address-list {
+	display: none;
+	top: -1px;
+	position: relative;
+	width: 282px;
+	height: 200px;
+	background-color: white;
+	z-index: 2;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+#address-list-inner {
+	border-top: 1px dashed #BEBEBE;
+	height: 100%;
+	width: 100%;
+}
+
+.address {
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
+	border-bottom: 1px solid #f9f9f9;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 16px;
+	-moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.address:hover {
+	cursor: default;
+	background-color: #f9f9f9;
 }
 
 #search-bar-button {
@@ -93,6 +131,7 @@ nav {
 	font-size: 16px;
 	background-color: #267873;
 	outline: none;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 	-moz-transition: all .4s ease;
     -o-transition: all .4s ease;
     -webkit-transition: all .4s ease;

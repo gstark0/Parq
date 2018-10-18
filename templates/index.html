@@ -23,8 +23,12 @@
 	</nav>
 
 	<div id="search">
-		<input type="text" name="search_bar" id="search-bar" placeholder="Gdzie chciałbyś zaparkować?">
-		<button id="search-bar-button"><i class="fas fa-search"></i></button>
+		<input type="text" name="search_bar" id="search-bar" placeholder="Gdzie chciałbyś zaparkować?" onfocus="focusSearchBar();" onfocusout="focusoutSearchBar();">
+		<button id="search-bar-button" onclick="goToAddress(document.getElementById('search-bar').value)"><i class="fas fa-search"></i></button>
+		<div id="address-list">
+			<div id="address-list-inner">
+			</div>
+		</div>
 	</div>
 
 	<div id="parking-table">
@@ -35,6 +39,10 @@
 
 	<div id="mapid"></div>
 
+	<script type="text/javascript">
+		var addr = {{ data[1] | safe }};
+		var data = {{ data[0] | tojson }};
+	</script>
 	<script type="text/javascript" src="./static/js/main.js"></script>
 </body>
 </html>

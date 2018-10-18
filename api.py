@@ -6,11 +6,6 @@ import cctv as cctv
 
 app = Flask(__name__)
 
-# Return parking info from database
-@app.route('/get_data')
-def get_data():
-	return jsonify(cctv.get_data())
-
 # Get each spot's status with its exact position on the parking table
 @app.route('/get_table', methods=['GET'])
 def get_table():
@@ -32,7 +27,9 @@ def train():
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	addr = cctv.get_addr()
+	data = cctv.get_data()
+	return render_template('index.html', data=[data, addr])
 
 if __name__ == '__main__':
 	app.run(debug=False)

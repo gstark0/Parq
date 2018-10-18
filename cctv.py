@@ -76,3 +76,7 @@ def get_table(coord):
 		if found:
 			return selected_spots
 	return 'No spots found!'
+
+# Get list of all parking addresses
+def get_addr():
+	return {str(i['addr']): i['location'] for i in db}
