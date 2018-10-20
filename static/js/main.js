@@ -11,6 +11,7 @@ document.getElementById('address-list-inner').innerHTML = addrList;
 
 // Get info about free and occupied parking spots from API
 var freeSpots = {}
+console.log(data)
 data.forEach(function(parking) {
 	parking['spots'].forEach(function(spot) {
 		coord = spot['coord'];
