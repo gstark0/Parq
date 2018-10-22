@@ -3,7 +3,7 @@
 
 <img src="https://raw.githubusercontent.com/gstark0/Parq/master/images/logo.png" width="500">
 
-🇺🇸 <a href="https://github.com/gstark0/Parq/blob/master/README_PL.md">Click here to see English readme</a> | 🇵🇱 Polish
+🇺🇸 <a href="https://github.com/gstark0/Parq/blob/master/README.md">Click here to see English readme</a> | 🇵🇱 Polish
 ### O Projekcie
 Główną ideą stojąca za projektem było rozwiązane jednego z najważniejszych problemów, występujących w większości nowoczesnych miast na świecie - problemu związanego z miejscami parkingowymi. Można pomyśleć, że czujniki wykrywające wolne/zajęte miejsca załatwiają sprawę, ale są one często drogie i nieopłacalne. Tymczasem ponad tymi parkingami wiszą kamery z których bardzo często obraz transmitowany jest na żywo. To rozwiązane wykorzystuje właśnie te kamery - te, które są otwarte i dostępne do podglądu dla wszystkich.
 
